@@ -128,6 +128,48 @@ plot(fit1, 2)
 
 :::
 
+* If we wanto to use an external dataset for a practice problem, we need to use a hidden auto-running webr code chunk to load the data first. With this approach, the dataset will be downloaded from a raw GitHub repository URL each time the practice problem is rendered. The repository where we are storing the datasets for all the module is called raw-data, inside the open-stat-prog organization.
+
+```{webr-r}
+#| autorun: true
+#| context: setup
+
+download.file("https://openstatprog.com/raw-data/boys.csv", "boys.csv")
+boys <- read.csv2("boys.csv", sep = ";")
+```
+
+* Remember that the `webr-r` environment is not the normal R environment. So, we need to load the dataset again in the normal R environment to use it in the solution code chunk.
+
+```{r, echo=FALSE}
+boys <- read.csv2("data/boys.csv", sep = ";")
+```
+
+
+Now we can use the `boys` dataset in the practice problem below.
+
+::: practice
+## Example Data Analysis Question
+
+Give the summary statistics (mean, median, standard deviation) for the `age` variable in the boys.dat dataset.
+
+:::: {.panel-tabset}
+
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+```
+
+## {{< var tab_title.solution >}}
+
+```{r}
+summary(boys$age)
+
+```
+
+::::
+
+:::
+
 ::: practice
 
 ## Example Theory Question
